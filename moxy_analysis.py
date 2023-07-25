@@ -121,7 +121,8 @@ if uploaded_data is not None:
 			name = 'THb'))
 	fig.update_layout(
     	title=dict(text=f"<b>Moxy Sesnor Analysis</b> {first} {last} {date} {year}", font=dict(size=20)))
-	fig.update_layout(xaxis_title = '<b>Sample Number</b> (s)')
+	fig.update_layout(xaxis_title = '<b>Sample Number</b>')
+	fig.update_layout(yaxis_title = f'<b>{data_sel}</b>')
 
 
 
