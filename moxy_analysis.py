@@ -49,7 +49,7 @@ def format_date(date_str):
     formatted_date = f"{month_name}-{day}"
     return formatted_date
 st.image('rowing_canada.png', width = 150)
-st.title("Rowing Canada Peach Analysis")
+st.title("Rowing Canada Moxy Analysis")
 
 
 uploaded_data = st.file_uploader('Selet Moxy Data')
