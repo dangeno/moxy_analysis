@@ -55,7 +55,7 @@ st.title("Rowing Canada Moxy Analysis")
 uploaded_data = st.file_uploader('Selet Moxy Data')
 
 
-fig = go.Figure()
+fig = make_subplots(specs=[[{"secondary_y": True}]])
 
 if uploaded_data is not None:
 	file = uploaded_data.name
@@ -118,7 +118,7 @@ if uploaded_data is not None:
 		fig.add_trace(go.Scatter(y=THb,
 			fill=None,
 			mode='lines', 
-			name = 'THb'))
+			name = 'THb'),secondary_y=True,)
 	fig.update_layout(
     	title=dict(text=f"<b>Moxy Sesnor Analysis</b> {first} {last} {date} {year}", font=dict(size=20)))
 	fig.update_layout(xaxis_title = '<b>Sample Number</b>')
