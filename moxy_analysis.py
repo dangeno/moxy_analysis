@@ -72,7 +72,7 @@ if uploaded_data is not None:
 	with col1:
 		session = st.selectbox('Select Session', sessions)
 	with col2: 
-		data_sel = st.selectbox('Select Session', ['SmO2', 'THb', 'All Measures'])
+		data_sel = st.selectbox('Select Data', ['SmO2', 'THb', 'All Measures'])
 	data = data.iloc[np.where(data['Session Ct']==session)[0],:]
 	date = data['mm-dd'][0]
 	date = format_date(date)
