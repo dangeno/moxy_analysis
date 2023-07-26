@@ -48,11 +48,16 @@ def format_date(date_str):
     # Combine the month name and day and return the formatted date
     formatted_date = f"{month_name}-{day}"
     return formatted_date
+
+
+
 st.image('rowing_canada.png', width = 150)
 st.title("Rowing Canada Moxy Analysis")
 
 
 uploaded_data = st.file_uploader('Selet Moxy Data')
+
+
 
 
 fig = make_subplots(specs=[[{"secondary_y": True}]])
@@ -66,6 +71,7 @@ if uploaded_data is not None:
 
 
 	data = pd.read_csv(uploaded_data, skiprows=3)
+	
 	sessions = data.groupby(['Session Ct']).count()
 	sessions = sessions.index
 	col1, col2 = st.columns(2)
@@ -74,18 +80,30 @@ if uploaded_data is not None:
 	with col2: 
 		data_sel = st.selectbox('Select Data', ['SmO2', 'THb', 'All Measures'])
 	data = data.iloc[np.where(data['Session Ct']==session)[0],:]
+
+	crop_data = st.checkbox('Crop Data')
+
+	if crop_data is True: 
+		with col1: 
+			on = st.number_input('Starting Index', value = 0)
+		with col2:
+			off = st.number_input('Ending Index', value = -1)
+		data = data[on:off].reset_index(drop=True)
+
 	date = data['mm-dd'][0]
 	date = format_date(date)
 	
 
 	Sm_avg = data['SmO2 Averaged']
 	Sm_avg_max = Sm_avg[20:-20].max()
+	
 
 	Sm_live = data['SmO2 Live']
 	Sm_live_max = Sm_avg[20:-20].max()
 	
 	THb = data['THb']
 	THb_max = THb[20:-20].max()
+	
 	normalize = st.checkbox('Normalize Data to Max')
 	if normalize is True:
 		Sm_avg = Sm_avg/Sm_avg_max
